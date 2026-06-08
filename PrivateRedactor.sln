@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrivateRedactor", "PrivateRedactor.csproj", "{6AEAE3A8-848B-487D-BC4D-14D1BA521395}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6AEAE3A8-848B-487D-BC4D-14D1BA521395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AEAE3A8-848B-487D-BC4D-14D1BA521395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AEAE3A8-848B-487D-BC4D-14D1BA521395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AEAE3A8-848B-487D-BC4D-14D1BA521395}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C8D4A8F-BE5E-4E46-8D12-68D6914A7F54}
+	EndGlobalSection
+EndGlobal
