@@ -14,7 +14,6 @@ namespace PrivateRedactor
         private static Tokenizer? _tokenizer;
         private static Dictionary<int, string> Id2Label;
 
-        private static int currentMode = 0;
         private static int currentThreads = 0;
 
         public PrivateRedactor(ILogger logger)
@@ -24,6 +23,7 @@ namespace PrivateRedactor
 
         public RedactionResult Redact(
             string Text,
+            string DetectableEntitiesOverride = "",
             int Threads = 1
         )
         {
@@ -79,6 +79,8 @@ namespace PrivateRedactor
             // 4. Collect Raw PII Entity hits matching character boundaries
             var rawEntities = new List<DetectedEntity>();
 
+            string[] detectableEntities = DetectableEntitiesOverride.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
+
             for (int i = 0; i < encodedTokens.Length; i++)
             {
                 if (i >= tokenOffsets.Count) break;
@@ -104,6 +106,11 @@ namespace PrivateRedactor
                 if (labelName != "O")
                 {
                     string cleanTag = labelName.Replace("B-", "").Replace("I-", "").ToUpper();
+
+                    if(detectableEntities.Length > 0 && !detectableEntities.Contains(cleanTag, StringComparer.OrdinalIgnoreCase))
+                    {
+                        continue; // Skip entities that are not in the user-specified detectable list
+                    }
 
                     rawEntities.Add(new DetectedEntity
                     {
