@@ -57,6 +57,14 @@ namespace PrivateRedactor
             // 1. Get token IDs
             uint[] encodedTokens = _tokenizer.Encode(Text);
 
+            const int MAX_TOKEN_LIMIT = 511;
+            if (encodedTokens.Length > MAX_TOKEN_LIMIT)
+            {
+                throw new ArgumentException(
+                    "The input text exceeds the model's maximum context limit of 512 tokens. " +
+                    "Please chunk your text before processing.");
+            }
+
             long[] inputIds = encodedTokens.Select(t => (long)t).ToArray();
             long[] attentionMask = Enumerable.Repeat(1L, inputIds.Length).ToArray();
 
